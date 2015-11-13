@@ -2,7 +2,7 @@ const ITEM_WIDTH = 150;
 const ITEM_HEIGHT = 50;
 const UNIT = 'px'; //'em';
 
-const colors = ['#FCFFF5', '#D1DBBD', '#91AA9D', '#3E606F', '#193441'];
+const colors = ['#D8CAA8', '#5C832F', '#284907', '#382513', '#363942'];
 
 export const menuStyle = (level) => ({
   fontFamily: 'monospace',
@@ -22,7 +22,7 @@ export const menuItemStyle = (highlighted) => ({
   position: 'relative',
   width: ITEM_WIDTH + UNIT,
   height: ITEM_HEIGHT+ UNIT,
-  background: highlighted ? colors[1] : colors[2],
+  background: highlighted ? colors[1] : colors[0],
   lineHeight: ITEM_HEIGHT+UNIT,
   cursor: 'pointer',
   // borderStyle: 'solid',

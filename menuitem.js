@@ -12,22 +12,26 @@ class MenuItem extends Component {
   }
   
   handleClick(e) {
-    e.stopPropagation(); //!
-    let { expand } = this.state;
-    let { submenu, name } = this.props;
-    //console.log(`click ${name}`);
-    this.setState({ expand: !expand });
-    if(!submenu) {
-      let { url } = this.props;
+    let { url } = this.props;
+    if(url) {
       window.location.href = url; //TODO: SPA?
     }
   } 
   handleMouseEnter() {
-    this.setState({highlighted: true});
+    this.setActive.bind(this)(true);
   }
   handleMouseLeave() {
-    this.setState({highlighted: false});
+    this.setActive.bind(this)(false);
   }
+  setActive(active) {
+    let { expandOnHover } = this.props;
+    let newState = { highlighted: active };
+    if(expandOnHover) {
+      Object.assign(newState, { expand: active });
+    }
+    this.setState(newState);
+  }
+
   render() {
     let { name, url, submenu, level, order } = this.props;
     let { highlighted, expand } = this.state;
@@ -60,6 +64,7 @@ MenuItem.defaultProps = {
   url: '',
   submenu: null,
   level: 0,
+  expandOnHover: true,
 }
 
 export default MenuItem;
