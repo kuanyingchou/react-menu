@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { menuItemStyle } from './style';
 import Menu from './menu';
+import { Direction } from './constants';
 
 class MenuItem extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class MenuItem extends Component {
   }
 
   render() {
-    let { name, url, submenu, level, order } = this.props;
+    let { name, url, submenu, level, order, direction } = this.props;
     let { highlighted, expand } = this.state;
     let icon;
     if(submenu) {
@@ -49,11 +50,15 @@ class MenuItem extends Component {
           onMouseLeave={ this.handleMouseLeave.bind(this) }
           >
         { /*'|'.repeat(level)*/ }
-        { icon } 
-        { ' ' } 
-        { order +' - ' }
+        { /* icon */ } 
+        {  ' '  } 
+        { /* order +' - ' */ }
         { name }
-        { (expand && submenu)? <Menu items={submenu} level={level+1}/> : '' }
+        { 
+          (expand && submenu)? 
+          <Menu items={submenu} level={level+1} direction={direction} /> : 
+          '' 
+        }
       </div>
     );
   }
@@ -65,6 +70,7 @@ MenuItem.defaultProps = {
   submenu: null,
   level: 0,
   expandOnHover: true,
+  direction: Direction.RIGHT,
 }
 
 export default MenuItem;
