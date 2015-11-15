@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { menuItemStyle } from './style';
 import Menu from './menu';
 import Button from './button';
 
@@ -15,9 +14,15 @@ class MenuItem extends Component {
   }
   
   handleClick(e) {
-    let { url } = this.props;
+    e.stopPropagation();
+    let { url, expandOnHover } = this.props;
     if(url) {
       window.location.href = url; //TODO: SPA?
+    }
+    if(!expandOnHover) {
+      this.setState({
+        expand: !this.state.expand
+      });  
     }
   } 
   handleMouseEnter() {

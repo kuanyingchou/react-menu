@@ -14,16 +14,16 @@ let m2 = {
   position: 'right',
   items: [
     { name: 'Well', url: 't1.html' },
-    { name: 'Site', url: 't2.html', submenu: m3 },
+    { name: 'Site', submenu: m3 },
   ],
 };
 
 let m1 = {
   position: 'right',
   items: [
-    { name: 'iPad Pro', url: 'a1.html', submenu: m2},
+    { name: 'iPad Pro', submenu: m2},
     { name: 'iPhone', url: 'a2.html'},
-    { name: 'Macbook Pro', url: 'a3.html', submenu: m3},
+    { name: 'Macbook Pro', submenu: m3},
   ],
 };
 
@@ -33,13 +33,13 @@ let menu = {
   items: [
     { name: 'Home', url:'home.html', },
     { name: 'Articles', url:'articles.html' },
-    { name: 'About', url:'about.html', submenu: m1},
+    { name: 'About', submenu: m1},
   ],
 };
 
 render(
   // <Menu config = { m1 } />,
   // <Menu config = { m3 } />,
-  <Menu config = { menu } />,
+  <Menu config = { menu } expandOnHover={ true } />,
   document.getElementById('root')
 );

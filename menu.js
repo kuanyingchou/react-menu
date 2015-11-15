@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { menuStyle } from './style';
 import MenuItem from './menuitem';
 
 class Menu extends Component {
@@ -21,7 +20,7 @@ class Menu extends Component {
       verticalAlign: 'top',
 
       left: level==0 || position=='down'?0:parentWidth-1,
-      top: position=='down'?parentHeight:0,
+      top: position=='down'?parentHeight-1:0,
 
       //margin: '1em',
       //overflow: 'true',
