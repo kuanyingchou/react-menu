@@ -3,24 +3,43 @@ import React from 'react';
 import Menu from './menu';
 import { Direction } from './constants';
 
-let abouts = [
-  { name: 'Me', url: 't1.html' },
-  { name: 'Site', url: 't2.html', submenu: [{name: 'Hi'}, {name: 'Let\'s Go'}] },
-];
+let m3 = {
+  position: 'down',
+  layout: 'horizontal',
+  items: [ {name: 'Good'}, {name: 'Let\'s Go'} ],
+};
 
-let articles = [
-  { name: 'iPad Pro', url: 'a1.html' },
-  { name: 'iPhone', url: 'a2.html', submenu: abouts},
-  { name: 'Macbook Pro', url: 'a3.html', submenu: abouts},
-];
+let m2 = {
+  layout: 'vertical',
+  position: 'right',
+  items: [
+    { name: 'Well', url: 't1.html' },
+    { name: 'Site', url: 't2.html', submenu: m3 },
+  ],
+};
 
-let items = [
-  { name: 'Home', url:'home.html', },
-  { name: 'Articles', url:'articles.html', submenu: articles, direction: 'down' },
-  { name: 'About', url:'about.html', submenu: abouts, direction: 'down' },
-];
+let m1 = {
+  position: 'right',
+  items: [
+    { name: 'iPad Pro', url: 'a1.html', submenu: m2},
+    { name: 'iPhone', url: 'a2.html'},
+    { name: 'Macbook Pro', url: 'a3.html', submenu: m3},
+  ],
+};
+
+let menu = {
+  layout: 'vertical',
+  // layout: 'horizontal',
+  items: [
+    { name: 'Home', url:'home.html', },
+    { name: 'Articles', url:'articles.html' },
+    { name: 'About', url:'about.html', submenu: m1},
+  ],
+};
 
 render(
-  <Menu items={ items } />,
+  // <Menu config = { m1 } />,
+  // <Menu config = { m3 } />,
+  <Menu config = { menu } />,
   document.getElementById('root')
 );
