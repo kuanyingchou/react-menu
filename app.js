@@ -40,6 +40,16 @@ let menu = {
 render(
   // <Menu config = { m1 } />,
   // <Menu config = { m3 } />,
-  <Menu config = { menu } expandOnHover={ true } />,
+  <div>
+    <p>
+      This is the header.
+    </p>
+    <div>
+      <Menu config = { menu } expandOnHover={ true } />
+    </div>
+    <p>
+      This is the footer.
+    </p>
+  </div>,
   document.getElementById('root')
 );
