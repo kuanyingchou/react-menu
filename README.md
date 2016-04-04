@@ -12,6 +12,14 @@ A component in the menu responds to certain actions. It could show another menu 
 
 When a menu is shown, it could be either floating on top of other components in the page (where the menu lives in a different layer on top of other components), or it could be stacked with other components (where the menu lives in the same layer as other components).
 
+## Development
+
+### Run local server
+
+```bash
+webpack app.js --watch
+```
+
 <!-- Mac:
 
 The menu bar is a menu.
