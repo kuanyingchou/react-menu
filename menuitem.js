@@ -40,7 +40,7 @@ class MenuItem extends Component {
     this.setState(newState);
   }
 
-  getStyle(highlighted, layout) {
+  getStyle(highlighted, layout, level, expand) {
     return {
       position: 'relative',
       //width: ITEM_WIDTH + UNIT,
@@ -52,6 +52,7 @@ class MenuItem extends Component {
       display: layout === 'horizontal' ? 'inline-block' : 'block',
       boxSizing: 'border-box',
       verticalAlign: 'top',
+      //zIndex: level,
       //textAlign: 'left',
       //margin: '1em',
       //padding: '1em',
@@ -72,12 +73,12 @@ class MenuItem extends Component {
   }
 
   render() {
-    let { name, url, submenu, level, order, layout, icon } = 
-        this.props;
+    let { name, url, submenu, level, order, layout, icon, dposition } = this.props;
     let { highlighted, expand, width, height } = this.state;
+
     return (
       <div 
-          style={ this.getStyle(highlighted, layout) } 
+          style={ this.getStyle(highlighted, layout, level, expand) } 
           onClick={ this.handleClick.bind(this) }
           onMouseEnter={ this.handleMouseEnter.bind(this) }
           onMouseLeave={ this.handleMouseLeave.bind(this) }
@@ -88,14 +89,14 @@ class MenuItem extends Component {
           (expand && submenu)? 
           <Menu 
               config={submenu} 
-              level={level+1} 
+              level={level+2} 
               parentWidth={ width }
               parentHeight={ height }
+              dposition={ dposition }
           /> : 
           '' 
         }
-
-        <Button text={name} highlighted={highlighted} />
+        { <Button text={name} highlighted={highlighted} level={level+1} /> }
       </div>
     );
   }
@@ -108,6 +109,7 @@ MenuItem.defaultProps = {
   level: 0,
   expandOnHover: true,
   layout: 'vertical',
+  dposition: 'bottom'
 }
 
 

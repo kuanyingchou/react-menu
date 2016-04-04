@@ -20,7 +20,7 @@ class Menu extends Component {
         left: 0,
         top: -height,
       };
-    case 'down':
+    case 'bottom':
       return {
         left: 0,
         top: parentHeight,
@@ -42,35 +42,35 @@ class Menu extends Component {
 
   getStyle(level, position, width, height, parentWidth, parentHeight) {
     let style = {
-      position: level==0?'relative':'absolute',
+      position: level==0?'static':'absolute',
       display: 'inline-block',
       //display: position=='right'?'inline-block':'block',
       boxSizing: 'border-box',
       verticalAlign: 'top',
       left: 0,
       top: 0,
-      // left: level==0 || position=='down'?0:parentWidth-1,
-      // top: position=='down'?parentHeight-1:0,
-      zIndex: level,
+      // left: level==0 || position=='bottom'?0:parentWidth-1,
+      // top: position=='bottom'?parentHeight-1:0,
 
       // users should be able to change these
       borderStyle: 'solid',
       borderColor: 'grey',
       borderWidth: '1px',
       background: 'lightgrey',
-      boxShadow: '3px 3px 5px rgba(0, 0, 0, 0.5)',
+      //boxShadow: '3px 3px 5px rgba(0, 0, 0, 0.5)',
       borderRadius: '2px',
     };
+    if(level!=0) {
+      Object.assign(style, { zIndex: level });
+    }
     return Object.assign(style,
       this.getPositionStyle(level, position, width,
           height, parentWidth, parentHeight));
   }
 
   render() {
-    let {
-      config, level, expandOnHover, parentWidth, parentHeight
-    } = this.props;
-    let { items, layout, position } = config;
+    let { config, level, expandOnHover, parentWidth, parentHeight, dposition } = this.props;
+    let { items = [], layout = 'vertical', position = dposition } = config;
     let menuItems = items.map(
       (item, index) => (
         <MenuItem
@@ -81,9 +81,9 @@ class Menu extends Component {
           url={item.url}
           submenu={item.submenu}
 
-          level={level}
+          level={level+1}
           expandOnHover={expandOnHover}
-          position={ position }
+          dposition={ dposition }
           layout={ layout }
         />
       )
@@ -100,11 +100,12 @@ class Menu extends Component {
 }
 
 Menu.defaultProps = {
-  config: {},
+  config: null,
   level: 0,
   expandOnHover: true,
   parentWidth: 0,
   parentHeight: 0,
+  dposition: 'bottom'
 }
 
 export default Menu;

@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './app.js',
+  entry: './positions.js',
   output: { filename: 'bundle.js' },
   module: {
     loaders: [
